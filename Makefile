@@ -25,7 +25,8 @@ status:
 	sudo systemctl status raspi_shutdown_daemon
 
 
-voice_get:
+voice_get: MMDAgent_Example-1.7
+MMDAgent_Example-1.7:
 	wget https://sourceforge.net/projects/mmdagent/files/MMDAgent_Example/MMDAgent_Example-1.7/MMDAgent_Example-1.7.zip --no-check-certificate
 	unzip MMDAgent_Example-1.7.zip
 	sudo cp -R ./MMDAgent_Example-1.7/Voice/mei /usr/share/hts-voice/
