@@ -9,4 +9,4 @@ trap 'rm ${tempfile}; exit 1' 1 2 3 15
 
 echo "$1" | open_jtalk "$option"
 aplay -q $tempfile
-
+rm $tempfile
