@@ -1,0 +1,11 @@
+[Unit]
+Description=RaspiShutdownDaemon
+
+[Service]
+ExecStart=/opt/raspi_shutdown_daemon.py
+Restart=always
+Type=forking
+PIDFile=/var/run/raspi_shutdown_daemon.pid
+
+[Install]
+WantedBy=multi-user.target
