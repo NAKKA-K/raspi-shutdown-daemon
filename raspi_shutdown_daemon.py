@@ -30,8 +30,6 @@ def raspi_shutdown_unit(SW1=7, LED1=21):
 # このデーモン用log
 def info_shutdown_daemon(info):
     print(info)
-    with open('/tmp/raspi_shutdown_daemon.info', 'w+') as info_file:
-        info_file.write(info)
     os.system('/usr/local/bin/jtalk.sh "シャットダウンします"')
 
 # プロセスのフォークと親プロセスの終了
