@@ -2,6 +2,7 @@
 import os
 import sys
 import RPi.GPIO as GPIO
+import time
 
 # 5秒間スイッチを長押しすると、シャットダウンする
 # 長押ししている間はLEDが光る
@@ -42,8 +43,8 @@ def fork():
 
 # pidファイルへ書き込み
 def write_pid(pid):
-    with open('/var/run/raspi_shutdown_daemon.py', 'w') as pid_file:
-        pid_file.write(pid+"\n")
+    with open('/var/run/raspi_shutdown_daemon.pid', 'w') as pid_file:
+        pid_file.write(str(pid)+"\n")
 
 # deamonプロセスの起動
 def daemon():
