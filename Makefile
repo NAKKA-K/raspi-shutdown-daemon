@@ -11,13 +11,13 @@ install:
 	sudo apt-get install -y open-jtalk open-jtalk-mecab-naist-jdic hts-voice-nitech-jp-atr503-m001
 	$(MAKE) voice_get
 	$(MAKE) service_setup
+	sudo systemctl daemon-reload
+	sudo systemctl enable raspi_shutdown_daemon
 
 run:
-	sudo systemctl enable raspi_shutdown_daemon
 	sudo systemctl start raspi_shutdown_daemon
 
 stop:
-	sudo systemctl disable raspi_shutdown_daemon
 	sudo systemctl stop raspi_shutdown_daemon
 
 status:
