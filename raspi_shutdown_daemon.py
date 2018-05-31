@@ -3,6 +3,9 @@ import os
 import sys
 import RPi.GPIO as GPIO
 import time
+import pygame.mixer
+import argparse
+import tempfile
 
 # 5秒間スイッチを長押しすると、シャットダウンする
 # 長押ししている間はLEDが光る
@@ -30,7 +33,33 @@ def raspi_shutdown_unit(SW1=7, LED1=21):
 # このデーモン用log
 def info_shutdown_daemon(info):
     print(info)
-    os.system('/usr/local/bin/jtalk.sh "シャットダウンします"')
+
+    args = get_flags()
+    if args.alert:
+        alert_message_at_shutdown("シャットダウンします")
+
+# CL引数のパース
+def get_flags():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--alert", help="Alert message at shutdown.", action="store_true")
+    return parser.parse_args()
+
+def alert_message_at_shutdown(message):
+    temp_wav = '/tmp/temp_damemon.wav'
+    try:
+        make_alert_wav(temp_wav, message)
+        pygame.mixer.init()
+        pygame.mixer.music.load(temp_wav)
+        pygame.mixer.music.play()
+    finally:
+        os.remove(temp_wav)
+
+def make_alert_wav(file_name, message):
+    jtalk_option="\
+        -m /usr/share/hts-voice/mei/mei_normal.htsvoice \
+        -x /var/lib/mecab/dic/open-jtalk/naist-jdic \
+        -ow {}".format(file_name)
+    os.system("echo {} | open_jtalk {}".format(message, jtalk_option))
 
 # プロセスのフォークと親プロセスの終了
 def fork():
