@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-.PHONY: help install run status stop
+.PHONY: help install run status stop restart
 .PHONY: voice_get service_setup
 
 help:
@@ -19,6 +19,10 @@ run:
 
 stop:
 	sudo systemctl stop raspi_shutdown_daemon
+
+restart:
+	sudo systemctl daemon-reload
+	sudo systemctl restart raspi_shutdown_daemon
 
 status:
 	tail /tmp/raspi_shutdown_daemon.info
