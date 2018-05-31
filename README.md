@@ -2,9 +2,9 @@
 SW7を5秒間押し続けると、シャットダウンされるプログラム
 
 # Description
-The LED1 glows, while pressing SW7.
-Press and hold for 5 seconds to *****shutdown**.
-When shutting down, the message will be alerted.
+The LED1 glows, while pressing SW7.  
+Press and hold for 5 seconds to **shutdown**.  
+When shutting down, the message will be alerted.  
 
 # Install
 ```
@@ -24,5 +24,5 @@ $ make run
 # Lisence
 
 # Document
-Reference doc directory.
+Reference doc directory.  
 
